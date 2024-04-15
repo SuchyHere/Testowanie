@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photos</title>
+</head>
+<style>
+    .navigation{
+        margin-right: 20px;
+        margin-bottom: 15px;
+        font-size: 25px;
+    }
+    </style>
+<body>
+    <h1>Photos</h1>
+    <a href="posts" class="navigation">posty</a>
+    <a href="photos" class="navigation">zdjecia</a>
+    <a href="albums" class="navigation"> albumy</a>
+    <div id="photos-container">
+        {% for photo in photos %}
+            <div class="photo">
+                <h2>{{ photo.title }}</h2>
+                <img src="{{ photo.url }}" alt="{{ photo.title }}" style="width: 300px;">
+                <p>Album: <a href="{{ photo.album_url }}">{{ photo.album_title }}</a></p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

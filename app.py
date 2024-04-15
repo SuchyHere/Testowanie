@@ -35,6 +35,22 @@ def aggregate_data():
             })
 
     return render_template('posts.html', posts=aggregated_data)
+
+@app.route("/photos")
+def photos():
+    photos = fetch_data('https://jsonplaceholder.typicode.com/photos')
+    albums = fetch_data('https://jsonplaceholder.typicode.com/albums')
+    albums_dict = {album['id']: album for album in albums}
+    
+    photos_data = [{
+        'title': photo['title'],
+        'url': photo['url'],
+        'album_url': f"https://jsonplaceholder.typicode.com/albums/{photo['albumId']}",
+        'album_title': albums_dict[photo['albumId']]['title'] if photo['albumId'] in albums_dict else 'No album title'
+    } for photo in photos]
+
+    return render_template('photos.html', photos=photos_data)
+
 @app.route('/')
 def home():
     return render_template('home.html')
