@@ -45,11 +45,37 @@ def photos():
     photos_data = [{
         'title': photo['title'],
         'url': photo['url'],
-        'album_url': f"https://jsonplaceholder.typicode.com/albums/{photo['albumId']}",
+        'album_id': photo['albumId'],
         'album_title': albums_dict[photo['albumId']]['title'] if photo['albumId'] in albums_dict else 'No album title'
     } for photo in photos]
 
     return render_template('photos.html', photos=photos_data)
+
+@app.route("/albums/<int:album_id>")
+def album_photos(album_id):
+    photos = fetch_data(f'https://jsonplaceholder.typicode.com/albums/{album_id}/photos')
+    album_info = fetch_data(f'https://jsonplaceholder.typicode.com/albums/{album_id}')
+
+    return render_template('album_photos.html', photos=photos, album_title=album_info['title'] if album_info else 'No album title')
+
+@app.route("/albums")
+def albums():
+    albums = fetch_data('https://jsonplaceholder.typicode.com/albums')
+    photos = fetch_data('https://jsonplaceholder.typicode.com/photos')
+
+    album_first_photo = {}
+    for photo in photos:
+        if photo['albumId'] not in album_first_photo:
+            album_first_photo[photo['albumId']] = photo['url']
+
+    albums_data = [{
+        'id': album['id'],
+        'title': album['title'],
+        'first_photo_url': album_first_photo.get(album['id'], '')
+    } for album in albums]
+
+    return render_template('albums.html', albums=albums_data)
+
 
 @app.route('/')
 def home():
