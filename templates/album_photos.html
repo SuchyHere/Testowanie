@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photos</title>
+    <title>Album Photos</title>
 </head>
 <style>
     .navigation{
@@ -13,16 +13,15 @@
     }
     </style>
 <body>
-    <h1>Photos</h1>
     <a href="posts" class="navigation">posty</a>
-    <a href="photos" class="navigation">zdjecia</a>
-    <a href="albums" class="navigation"> albumy</a>
-    <div id="photos-container">
+            <a href="photos" class="navigation">zdjecia</a>
+            <a href="albums" class="navigation"> albumy</a>
+    <h1>Album: {{ album_title }}</h1>
+    <div id="album-photos-container">
         {% for photo in photos %}
             <div class="photo">
                 <h2>{{ photo.title }}</h2>
                 <img src="{{ photo.url }}" alt="{{ photo.title }}" style="width: 300px;">
-                <p>Album: <a href="/albums/{{ photo.album_id }}">{{ photo.album_title }}</a></p>
             </div>
         {% endfor %}
     </div>
