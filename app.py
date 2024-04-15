@@ -27,6 +27,7 @@ def aggregate_data():
     try:
         min_length = request.args.get('min_length', default=0, type=int)
         max_length = request.args.get('max_length', default=float('inf'), type=int)
+        limit = request.args.get('limit', default=None, type=int) 
         posts = fetch_data('https://jsonplaceholder.typicode.com/posts')
         users = fetch_data('https://jsonplaceholder.typicode.com/users')
         comments = fetch_data('https://jsonplaceholder.typicode.com/comments')
@@ -45,7 +46,7 @@ def aggregate_data():
                     'body': c['body'],
                     'email': c['email']
                 } for c in comments if c['postId'] == post['id']]
-
+                
                 aggregated_data.append({
                     'name': user['name'] if user else 'No name',
                     'username': user['username'] if user else 'No username',
@@ -53,14 +54,19 @@ def aggregate_data():
                     'comments': post_comments
                 })
 
+        if limit is not None:
+            aggregated_data = aggregated_data[:limit]
+
         return render_template('posts.html', posts=aggregated_data)
     except Exception as e:
         app.logger.error(f"Błąd przy agregowaniu danych postów: {e}")
         return jsonify({'error': 'Internal Server Error'}), 500
 
 
+
 @app.route("/photos")
 def photos():
+    limit = request.args.get('limit', default=None, type=int)
     try:
         photos = fetch_data('https://jsonplaceholder.typicode.com/photos')
         albums = fetch_data('https://jsonplaceholder.typicode.com/albums')
@@ -76,10 +82,14 @@ def photos():
             'album_title': albums_dict[photo['albumId']]['title'] if photo['albumId'] in albums_dict else 'No album title'
         } for photo in photos]
 
+        if limit is not None:
+            photos_data = photos_data[:limit]
+
         return render_template('photos.html', photos=photos_data)
     except Exception as e:
         app.logger.error(f"Błąd przy ładowaniu zdjęć: {e}")
         return jsonify({'error': 'Internal Server Error'}), 500
+
 
 
 @app.route("/albums/<int:album_id>")
@@ -97,6 +107,7 @@ def album_photos(album_id):
 
 @app.route("/albums")
 def albums():
+    limit = request.args.get('limit', default=None, type=int)
     try:
         albums = fetch_data('https://jsonplaceholder.typicode.com/albums')
         photos = fetch_data('https://jsonplaceholder.typicode.com/photos')
@@ -113,6 +124,9 @@ def albums():
             'title': album['title'],
             'first_photo_url': album_first_photo.get(album['id'], '')
         } for album in albums]
+
+        if limit is not None:
+            albums_data = albums_data[:limit]
 
         return render_template('albums.html', albums=albums_data)
     except Exception as e:
