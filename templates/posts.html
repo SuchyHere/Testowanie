@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+</head>
+<body>
+    <h1>Posty</h1>
+    <form action="/posts" method="get">
+        <label for="min_length">Minimalna liczba znaków:</label>
+        <input type="number" id="min_length" name="min_length" value="{{ request.args.get('min_length', '') }}" min="0">
+        
+        <label for="max_length">Maksymalna liczba znaków:</label>
+        <input type="number" id="max_length" name="max_length" value="{{ request.args.get('max_length', '') }}" min="0">
+        
+        <button type="submit">Filtruj</button>
+    </form>
+    <div id="posts-container">
+        {% for post in posts %}
+            <div class="post">
+                <h2>{{ post.name }} ({{ post.username }})</h2>
+                <p>{{ post.post_body }}</p>
+                <h3>Komentarze:</h3>
+                <ul>
+                    {% for comment in post.comments %}
+                        <h4><strong>E-mail:</strong> {{ comment.email }}</h4>
+                        <li>{{ comment.name }}: {{ comment.body }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
