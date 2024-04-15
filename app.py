@@ -12,7 +12,11 @@ handler.setFormatter(formatter)
 
 app = Flask(__name__)
 app.logger.addHandler(handler)
-
+def validlimit(limit):
+    try:
+        return int(limit) >= 0
+    except ValueError:
+        return False
 def fetch_data(url):
     try:
         response = requests.get(url)
@@ -27,7 +31,9 @@ def aggregate_data():
     try:
         min_length = request.args.get('min_length', default=0, type=int)
         max_length = request.args.get('max_length', default=float('inf'), type=int)
-        limit = request.args.get('limit', default=None, type=int) 
+        limit = request.args.get('limit')
+        if limit is not None and not validlimit(limit):
+            return jsonify({'error': 'Invalid limit value'}), 400
         posts = fetch_data('https://jsonplaceholder.typicode.com/posts')
         users = fetch_data('https://jsonplaceholder.typicode.com/users')
         comments = fetch_data('https://jsonplaceholder.typicode.com/comments')
@@ -66,8 +72,10 @@ def aggregate_data():
 
 @app.route("/photos")
 def photos():
-    limit = request.args.get('limit', default=None, type=int)
     try:
+        limit = request.args.get('limit')
+        if limit is not None and not validlimit(limit):
+            return jsonify({'error': 'Invalid limit value'}), 400
         photos = fetch_data('https://jsonplaceholder.typicode.com/photos')
         albums = fetch_data('https://jsonplaceholder.typicode.com/albums')
         if photos is None or albums is None:
@@ -107,8 +115,10 @@ def album_photos(album_id):
 
 @app.route("/albums")
 def albums():
-    limit = request.args.get('limit', default=None, type=int)
     try:
+        limit = request.args.get('limit')
+        if limit is not None and not validlimit(limit):
+            return jsonify({'error': 'Invalid limit value'}), 400
         albums = fetch_data('https://jsonplaceholder.typicode.com/albums')
         photos = fetch_data('https://jsonplaceholder.typicode.com/photos')
         if albums is None or photos is None:
