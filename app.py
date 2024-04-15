@@ -16,7 +16,7 @@ app.logger.addHandler(handler)
 def fetch_data(url):
     try:
         response = requests.get(url)
-        response.raise_for_status()  # Sprawia, że requests zgłasza wyjątek dla kodów 4xx i 5xx
+        response.raise_for_status()  # wyjątek dla kodów 400 i 500
         return response.json()
     except requests.RequestException as e:
         app.logger.error(f"Błąd przy pobieraniu danych z {url}: {e}")
