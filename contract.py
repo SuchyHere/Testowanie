@@ -2,7 +2,7 @@ import requests
 import pytest
 import json
 
-BASE_URL = "http://127.0.0.1:5000"
+BASE_URL = 'https://jsonplaceholder.typicode.com/'
 
 @pytest.mark.contract
 def test_get_user_contract():
@@ -11,7 +11,7 @@ def test_get_user_contract():
     response = requests.get(f"{BASE_URL}/users/{user_id}")
 
     assert response.status_code == 200
-    assert response.headers["Content-Type"] == "application/json"
+    assert response.headers["Content-Type"].startswith("application/json")
 
     user_data = response.json()
     assert user_data["id"] == user_id
@@ -28,7 +28,7 @@ def test_create_post_contract():
     response = requests.post(f"{BASE_URL}/posts", json=post_data)
 
     assert response.status_code == 201
-    assert response.headers["Content-Type"] == "application/json"
+    assert response.headers["Content-Type"].startswith("application/json")
 
     created_post = response.json()
     assert created_post["userId"] == user_id
