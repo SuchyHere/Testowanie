@@ -1,6 +1,6 @@
 import unittest
 from flask_testing import TestCase
-from app import app  # make sure your Flask app is named correctly
+from app import app 
 
 class BaseTestCase(TestCase):
     def create_app(self):
@@ -34,6 +34,11 @@ class TestRoutes(BaseTestCase):
         response = self.client.get('/photos?limit=-5')
         self.assertEqual(response.status_code, 400)
         self.assertIn('Invalid limit value', response.data.decode())
+    def test_invalid_limit_albums(self):
+        response = self.client.get('/albums?limit=-3')
+        self.assertEqual(response.status_code, 400)
+        self.assertIn('Invalid limit value', response.data.decode())
+
 
 if __name__ == '__main__':
     unittest.main()
