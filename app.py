@@ -12,11 +12,13 @@ handler.setFormatter(formatter)
 
 app = Flask(__name__)
 app.logger.addHandler(handler)
-def validlimit(limit):
+def valid_limit(limit):
     try:
         return int(limit) >= 0
     except ValueError:
         return False
+
+
 def fetch_data(url):
     try:
         response = requests.get(url)
@@ -32,8 +34,11 @@ def aggregate_data():
         min_length = request.args.get('min_length', default=0, type=int)
         max_length = request.args.get('max_length', default=float('inf'), type=int)
         limit = request.args.get('limit')
-        if limit is not None and not validlimit(limit):
+
+        if limit is not None and not valid_limit(limit):
             return jsonify({'error': 'Invalid limit value'}), 400
+        limit = int(limit) if limit is not None else None
+
         posts = fetch_data('https://jsonplaceholder.typicode.com/posts')
         users = fetch_data('https://jsonplaceholder.typicode.com/users')
         comments = fetch_data('https://jsonplaceholder.typicode.com/comments')
@@ -42,8 +47,8 @@ def aggregate_data():
             raise ValueError("Nie udało się pobrać danych")
 
         users_dict = {user['id']: user for user in users}
-
         aggregated_data = []
+
         for post in posts:
             if min_length <= len(post['body']) <= max_length:
                 user = users_dict.get(post['userId'])
@@ -52,7 +57,7 @@ def aggregate_data():
                     'body': c['body'],
                     'email': c['email']
                 } for c in comments if c['postId'] == post['id']]
-                
+
                 aggregated_data.append({
                     'name': user['name'] if user else 'No name',
                     'username': user['username'] if user else 'No username',
@@ -69,20 +74,21 @@ def aggregate_data():
         return jsonify({'error': 'Internal Server Error'}), 500
 
 
-
 @app.route("/photos")
 def photos():
     try:
         limit = request.args.get('limit')
-        if limit is not None and not validlimit(limit):
+        if limit is not None and not valid_limit(limit):
             return jsonify({'error': 'Invalid limit value'}), 400
+        limit = int(limit) if limit is not None else None
+
         photos = fetch_data('https://jsonplaceholder.typicode.com/photos')
         albums = fetch_data('https://jsonplaceholder.typicode.com/albums')
+
         if photos is None or albums is None:
             raise ValueError("Nie udało się pobrać danych dla zdjęć lub albumów.")
 
         albums_dict = {album['id']: album for album in albums}
-        
         photos_data = [{
             'title': photo['title'],
             'url': photo['url'],
@@ -97,8 +103,6 @@ def photos():
     except Exception as e:
         app.logger.error(f"Błąd przy ładowaniu zdjęć: {e}")
         return jsonify({'error': 'Internal Server Error'}), 500
-
-
 
 @app.route("/albums/<int:album_id>")
 def album_photos(album_id):
@@ -117,8 +121,10 @@ def album_photos(album_id):
 def albums():
     try:
         limit = request.args.get('limit')
-        if limit is not None and not validlimit(limit):
+        if limit is not None and not valid_limit(limit):
             return jsonify({'error': 'Invalid limit value'}), 400
+        limit = int(limit) if limit is not None else None
+
         albums = fetch_data('https://jsonplaceholder.typicode.com/albums')
         photos = fetch_data('https://jsonplaceholder.typicode.com/photos')
         if albums is None or photos is None:
@@ -144,9 +150,10 @@ def albums():
         return jsonify({'error': 'Internal Server Error'}), 500
 
 
-
 @app.route('/')
 def home():
     return render_template('home.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
