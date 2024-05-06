@@ -1,6 +1,6 @@
 import unittest
 from flask_testing import TestCase
-from app import app 
+from app import app
 
 class BaseTestCase(TestCase):
     def create_app(self):
@@ -39,6 +39,25 @@ class TestRoutes(BaseTestCase):
         self.assertEqual(response.status_code, 400)
         self.assertIn('Invalid limit value', response.data.decode())
 
+
+    def test_invalid_limit_albums(self):
+        response = self.client.get('/albums?limit=-3')
+        self.assertEqual(response.status_code, 400)
+        self.assertIn('Invalid limit value', response.data.decode())
+
+    def test_invalid_format_limit_posts(self):
+        response = self.client.get('/posts?limit=asd')
+        self.assertEqual(response.status_code, 400)
+        self.assertIn('Invalid limit value', response.data.decode())
+
+    def test_empty_data_response_photos(self):
+        response = self.client.get('/photos?limit=0')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('No photos available', response.data.decode()) 
+    def test_404_route(self):
+        response = self.client.get('/asd')
+        self.assertEqual(response.status_code, 404)
+        self.assertIn('Page not found', response.data.decode())
 
 if __name__ == '__main__':
     unittest.main()
