@@ -18,8 +18,8 @@ class UserBehavior(HttpUser):
 
     @task(4)
     def view_limit_albums(self):
-        self.client.get("/albums?limit=5")
+        self.client.get("/albums?limit=3")
 
     @task(5)
     def view_limit_posts(self):
-        self.client.get("/posts?limit=10")
+        self.client.get("/posts?limit=7")
