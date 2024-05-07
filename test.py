@@ -52,8 +52,8 @@ class TestRoutes(BaseTestCase):
 
     def test_empty_data_response_photos(self):
         response = self.client.get('/photos?limit=0')
-        self.assertEqual(response.status_code, 200)
-        self.assertIn('No photos available', response.data.decode()) 
+        self.assertEqual(response.status_code, 400)
+        self.assertIn('Limit is set to null', response.data.decode())
     def test_404_route(self):
         response = self.client.get('/asd')
         self.assertEqual(response.status_code, 404)

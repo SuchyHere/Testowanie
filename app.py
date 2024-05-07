@@ -39,6 +39,9 @@ def aggregate_data():
             return jsonify({'error': 'Invalid limit value'}), 400
         limit = int(limit) if limit is not None else None
 
+        if limit == 0:
+            return jsonify({'error': 'Limit is set to null'}), 400
+
         posts = fetch_data('https://jsonplaceholder.typicode.com/posts')
         users = fetch_data('https://jsonplaceholder.typicode.com/users')
         comments = fetch_data('https://jsonplaceholder.typicode.com/comments')
@@ -82,11 +85,16 @@ def photos():
             return jsonify({'error': 'Invalid limit value'}), 400
         limit = int(limit) if limit is not None else None
 
+        if limit == 0:
+            return jsonify({'error': 'Limit is set to null'}), 400
+
         photos = fetch_data('https://jsonplaceholder.typicode.com/photos')
         albums = fetch_data('https://jsonplaceholder.typicode.com/albums')
 
         if photos is None or albums is None:
             raise ValueError("Nie udało się pobrać danych dla zdjęć lub albumów.")
+
+
 
         albums_dict = {album['id']: album for album in albums}
         photos_data = [{
@@ -124,6 +132,8 @@ def albums():
         if limit is not None and not valid_limit(limit):
             return jsonify({'error': 'Invalid limit value'}), 400
         limit = int(limit) if limit is not None else None
+        if limit == 0:
+            return jsonify({'error': 'Limit is set to null'}), 400
 
         albums = fetch_data('https://jsonplaceholder.typicode.com/albums')
         photos = fetch_data('https://jsonplaceholder.typicode.com/photos')
