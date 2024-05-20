@@ -89,25 +89,13 @@ def photos():
             return jsonify({'error': 'Limit is set to null'}), 400
 
         photos = fetch_data('https://jsonplaceholder.typicode.com/photos')
-        albums = fetch_data('https://jsonplaceholder.typicode.com/albums')
-
-        if photos is None or albums is None:
-            raise ValueError("Nie udało się pobrać danych dla zdjęć lub albumów.")
-
-
-
-        albums_dict = {album['id']: album for album in albums}
-        photos_data = [{
-            'title': photo['title'],
-            'url': photo['url'],
-            'album_id': photo['albumId'],
-            'album_title': albums_dict[photo['albumId']]['title'] if photo['albumId'] in albums_dict else 'No album title'
-        } for photo in photos]
+        if photos is None:
+            raise ValueError("Nie udało się pobrać danych zdjęć.")
 
         if limit is not None:
-            photos_data = photos_data[:limit]
+            photos = photos[:limit]
 
-        return render_template('photos.html', photos=photos_data)
+        return render_template('photos.html', photos=photos)
     except Exception as e:
         app.logger.error(f"Błąd przy ładowaniu zdjęć: {e}")
         return jsonify({'error': 'Internal Server Error'}), 500
@@ -140,25 +128,13 @@ def albums():
         if albums is None or photos is None:
             raise ValueError("Nie udało się pobrać danych albumów lub zdjęć.")
 
-        album_first_photo = {}
-        for photo in photos:
-            if photo['albumId'] not in album_first_photo:
-                album_first_photo[photo['albumId']] = photo['url']
-
-        albums_data = [{
-            'id': album['id'],
-            'title': album['title'],
-            'first_photo_url': album_first_photo.get(album['id'], '')
-        } for album in albums]
-
         if limit is not None:
-            albums_data = albums_data[:limit]
+            albums = albums[:limit]
 
-        return render_template('albums.html', albums=albums_data)
+        return render_template('albums.html', albums=albums, photos=photos)
     except Exception as e:
         app.logger.error(f"Błąd przy ładowaniu albumów: {e}")
         return jsonify({'error': 'Internal Server Error'}), 500
-
 
 @app.route('/')
 def home():

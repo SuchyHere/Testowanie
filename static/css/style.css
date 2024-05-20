@@ -1,0 +1,518 @@
+* {
+    margin: 0 auto;
+    font-family: 'Helvetica', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #EEEEF0;
+}
+
+.nav {
+    background: #FFFFFF;
+    width: 100%;
+    display: flex;
+    height: 70px;
+    align-items: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: black;
+}
+
+.name {
+    width: 40%;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    font-family: "JetBrains Mono ExtraBold", sans-serif;
+    margin-right: 10px;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+}
+.nav li{
+    margin-right: 20px;
+}
+
+.nav a {
+    display: block;
+    text-decoration: none;
+    color: black    ;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.content {
+    margin: 0 auto;
+    background: #FFFFFF;
+    padding: 30px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 8px 8px 24px rgba(62, 62, 74, 1);
+    margin-bottom: 50px;
+}
+
+.limit button, .filter button {
+    border: 1px solid #FFFFFF;
+    font-size: 1.5rem;
+    background: black;
+    color: #FFFFFF;
+    padding: 5px 20px;
+    transition: 0.7s;
+}
+
+.limit button:hover {
+    border: 1px solid black;
+    background: #FFFFFF;
+    color: mediumpurple;
+}
+
+.limit {
+    align-items: center;
+    background: #FFFFFF;
+    width: 100%;
+    margin: 20px auto;
+    padding: 30px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+form {
+    display: flex;* {
+    margin: 0 auto;
+    font-family: 'Helvetica', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #EEEEF0;
+}
+
+.nav {
+    background: #FFFFFF;
+    width: 100%;
+    display: flex;
+    height: 70px;
+    align-items: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: black;
+}
+
+.name {
+    width: 40%;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    font-family: "JetBrains Mono ExtraBold", sans-serif;
+    margin-right: 10px;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.nav a {
+    display: block;
+    text-decoration: none;
+    color: black    ;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.content {
+    margin: 0 auto;
+    background: #FFFFFF;
+    padding: 30px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 8px 8px 24px rgba(62, 62, 74, 1);
+    margin-bottom: 50px;
+}
+
+.limit button, .filter button {
+    border: 1px solid #FFFFFF;
+    font-size: 1.5rem;
+    background: black;
+    color: #FFFFFF;
+    padding: 5px 20px;
+    transition: 0.7s;
+}
+
+.limit button:hover {
+    border: 1px solid black;
+    background: #FFFFFF;
+    color: mediumpurple;
+}
+
+.limit {
+    align-items: center;
+    background: #FFFFFF;
+    width: 100%;
+    margin: 20px auto;
+    padding: 30px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+form {
+    display: flex;
+}
+
+.limit label, .filter label {
+    font-size: 1.3rem;
+    color: black;
+    padding: 5px 0;
+}
+
+.limit input, .filter input {
+    text-align: center;
+    font-size: 1.3rem;
+    color: black;
+    border: 1px solid black;
+    margin: 10px 20px;
+    width: 50px;
+}
+
+.photo {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.photo a {
+    margin: 20px auto;
+    padding: 5px;
+}
+
+/* home*/
+
+.container-home {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background: #EEEEF0;
+}
+
+.content-home {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    background: white;
+}
+
+.navigation-home {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.content-home h3 {
+    color: black;
+    margin: 50px auto;
+    font-size: 4rem;
+}
+
+.navigation-home ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    padding: 0 0;
+}
+
+.navigation-home a {
+    width: 40%;
+    display: block;
+    text-decoration: none;
+    background: black;
+    text-align: center;
+    color: #FFFFFF;
+    padding: 20px 50px;
+    border: 1px solid #FFFFFF;
+    transition: 0.7s;
+}
+
+.navigation-home a:hover {
+    color: grey;
+    background: #FFFFFF;
+    border: 1px solid grey;
+}
+
+/*Posty*/
+
+.post {
+    padding: 30px;
+    border: 1px grey;
+    width: 90%;
+    margin: 20px auto;
+    box-shadow: 8px 8px 24px rgba(62, 62, 74, 1);
+}
+
+.post h2 {
+    font-size: 1rem;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.post p {
+    width: 100%;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.post h3 {
+    width: 100%;
+    font-size: 1.1rem;
+    color: mediumpurple;
+}
+
+.post ul {
+    width: 100%;
+    padding: 0 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.post li {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.posts-form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+/*  Albums - album*/
+
+.albums-album {
+    width: 90%;
+    margin: 20px auto;
+    padding: 30px;
+    border: 1px solid black;
+    box-shadow: 8px 8px 24px rgba(62, 62, 74, 1);
+}
+
+.albums-album h2 {
+    font-size: 1.3rem;
+    color: black;
+    margin-bottom: 10px;
+}
+
+/*Photos - album*/
+
+.photos-album {
+    margin: 20px auto;
+    width: 90%;
+    padding: 40px;
+    border: 1px solid black;
+    box-shadow: 8px 8px 24px rgba(62, 62, 74, 1);
+}
+
+.photos-album h2 {
+    font-size: 2rem;
+    color: black;
+    margin-bottom: 40px;
+}
+
+.albums-album p {
+    margin-top: 10px;
+}
+
+.albums-album p a {
+    color: mediumpurple;
+    font-size: 1.2rem;
+}
+}
+
+.limit label, .filter label {
+    font-size: 1.3rem;
+    color: black;
+    padding: 5px 0;
+}
+
+.limit input, .filter input {
+    text-align: center;
+    font-size: 1.3rem;
+    color: black;
+    border: 1px solid black;
+    margin: 10px 20px;
+    width: 50px;
+}
+
+.photo {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.photo a {
+    margin: 20px auto;
+    padding: 5px;
+}
+
+/* home*/
+
+.container-home {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background: #EEEEF0;
+}
+
+.content-home {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    background: white;
+}
+
+.navigation-home {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.content-home h3 {
+    color: black;
+    margin: 50px auto;
+    font-size: 4rem;
+}
+
+.navigation-home ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    padding: 0 0;
+}
+
+.navigation-home a {
+    width: 40%;
+    display: block;
+    text-decoration: none;
+    background: black;
+    text-align: center;
+    color: #FFFFFF;
+    padding: 20px 50px;
+    border: 1px solid #FFFFFF;
+    transition: 0.7s;
+}
+
+.navigation-home a:hover {
+    color: grey;
+    background: #FFFFFF;
+    border: 1px solid grey;
+}
+
+/*Posty*/
+
+.post {
+    padding: 30px;
+    border: 1px grey;
+    width: 90%;
+    margin: 20px auto;
+    box-shadow: 8px 8px 24px rgba(62, 62, 74, 1);
+}
+
+.post h2 {
+    font-size: 1rem;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.post p {
+    width: 100%;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.post h3 {
+    width: 100%;
+    font-size: 1.1rem;
+    color: mediumpurple;
+}
+
+.post ul {
+    width: 100%;
+    padding: 0 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.post li {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.posts-form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+/*  Albums - album*/
+
+.albums-album {
+    width: 90%;
+    margin: 20px auto;
+    padding: 30px;
+    border: 1px solid black;
+    box-shadow: 8px 8px 24px rgba(62, 62, 74, 1);
+}
+
+.albums-album h2 {
+    font-size: 1.3rem;
+    color: black;
+    margin-bottom: 10px;
+}
+
+/*Photos - album*/
+
+.photos-album {
+    margin: 20px auto;
+    width: 90%;
+    padding: 40px;
+    border: 1px solid black;
+    box-shadow: 8px 8px 24px rgba(62, 62, 74, 1);
+}
+
+.photos-album h2 {
+    font-size: 2rem;
+    color: black;
+    margin-bottom: 40px;
+}
+
+.albums-album p {
+    margin-top: 10px;
+}
+
+.albums-album p a {
+    color: mediumpurple;
+    font-size: 1.2rem;
+}

@@ -3,28 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Photos</title>
+    <link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<style>
-    .navigation{
-        margin-right: 20px;
-        margin-bottom: 15px;
-        font-size: 25px;
-    }
-    </style>
+
 <body>
-    <h1>Photos</h1>
-    <a href="posts" class="navigation">posty</a>
-    <a href="photos" class="navigation">zdjecia</a>
-    <a href="albums" class="navigation"> albumy</a>
-    <div id="photos-container">
-        {% for photo in photos %}
-            <div class="photo">
-                <h2>{{ photo.title }}</h2>
-                <img src="{{ photo.url }}" alt="{{ photo.title }}" style="width: 300px;">
-                <p>Album: <a href="/albums/{{ photo.album_id }}">{{ photo.album_title }}</a></p>
+    <div class="container">
+        <div class="nav">
+            <div class="name">
+                <h1>ZDJĘCIA</h1>
             </div>
-        {% endfor %}
+            <div class="navigation">
+                <ul>
+                    <li><a href="{{ url_for('home') }}">HOME</a></li>
+                    <li><a href="{{ url_for('aggregate_data') }}">POSTY</a></li>
+                    <li><a href="{{ url_for('albums') }}">ALBUMY</a></li>
+                    <li><a href="{{ url_for('photos') }}">ZDJĘCIA</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="limit">
+            <form method="GET" action="{{ url_for('photos') }}">
+                <label for="limit">Limit wyświetlanych zdjęć:</label>
+                <input type="number" id="limit" name="limit" min="1" max="50" value="{{ request.args.get('limit', '') }}" required>
+                <button>Zastosuj</button>
+            </form>
+        </div>
+
+        <div class="content">
+            <div class="photo">
+                {% for photo in photos %}
+                    <a href="{{ photo['url'] }}" target="_blank"><img src="{{ photo['thumbnailUrl'] }}" alt="{{ photo['title'] }}"></a>
+                {% endfor %}
+            </div>
+        </div>
     </div>
+
+    <script>
+        document.getElementById('limit').addEventListener('change', function() {
+            document.querySelector('.limit form').action = "{{ url_for('photos') }}?limit=" + this.value;
+        });
+    </script>
+
 </body>
 </html>

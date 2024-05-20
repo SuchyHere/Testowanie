@@ -1,30 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Albumy</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<style>
-    .navigation{
-        margin-right: 20px;
-        margin-bottom: 15px;
-        font-size: 25px;
-    }
-    </style>
+
 <body>
-    <h1>Albums</h1>
-    <a href="posts" class="navigation">posty</a>
-    <a href="photos" class="navigation">zdjecia</a>
-    <a href="albums" class="navigation"> albumy</a>
-    <div id="albums-container">
-        {% for album in albums %}
-            <div class="album">
-                <h2>{{ album.title }}</h2>
-                <img src="{{ album.first_photo_url }}" alt="{{ album.title }}" style="width: 300px;">
-                <p><a href="/albums/{{ album.id }}">Zobacz album</a></p>
+    <div class="container">
+        <div class="nav">
+            <div class="name">
+                <h1>Albumy</h1>
             </div>
-        {% endfor %}
+            <div class="navigation">
+                <ul>
+                    <li><a href="{{ url_for('home') }}">HOME</a></li>
+                    <li><a href="{{ url_for('aggregate_data') }}">POSTY</a></li>
+                    <li><a href="{{ url_for('albums') }}">ALBUMY</a></li>
+                    <li><a href="{{ url_for('photos') }}">ZDJĘCIA</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="limit">
+            <form method="GET" action="{{ url_for('albums') }}">
+                <label for="limit">Limit wyświetlanych albumów:</label>
+                <input type="number" id="limit" name="limit" min="1" max="100" value="{{ request.args.get('limit', '') }}" required>
+                <button>Zastosuj</button>
+            </form>
+        </div>
+
+        <div class="content">
+            {% for album in albums %}
+                <div class="albums-album">
+                    <h2>Album - {{ album.id }} - {{ album.title }}</h2>
+                    <div class="photo">
+                        {% set ns = namespace(counter=0) %}
+                        {% for photo in photos %}
+                            {% if photo.albumId == album.id %}
+                                {% if ns.counter < 10 %}
+                                    <a href="{{ photo['thumbnailUrl'] }}" target="_blank"><img src="{{ photo['thumbnailUrl'] }}" alt="{{ photo['title'] }}"></a>
+                                    {% set ns.counter = ns.counter + 1 %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <p>
+                        <a href="{{ url_for('album_photos', album_id=album.id) }}">Zobacz wszystkie zdjęcia</a>
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
+
+    <script>
+        document.getElementById('limit').addEventListener('change', function() {
+            document.querySelector('.limit form').action = "{{ url_for('albums') }}?limit=" + this.value;
+        });
+    </script>
 </body>
 </html>

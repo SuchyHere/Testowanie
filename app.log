@@ -1,0 +1,3 @@
+2024-05-20 11:34:38,800 - app - ERROR - B³¹d przy ³adowaniu zdjêæ: Could not build url for endpoint 'getPhotosWithLimit' with values ['albumId', 'albumTitle', 'limit']. Did you mean 'photos' instead?
+2024-05-20 12:38:21,794 - app - ERROR - B³¹d przy ³adowaniu albumów: Could not build url for endpoint '' with values ['limit']. Did you mean 'static' instead?
+2024-05-20 12:39:10,019 - app - ERROR - B³¹d przy ³adowaniu albumów: Could not build url for endpoint '' with values ['limit']. Did you mean 'static' instead?
