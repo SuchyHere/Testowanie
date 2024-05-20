@@ -1,0 +1,80 @@
+2024-05-20 08:56:59,175 - app - ERROR - B³¹d przy pobieraniu danych z https://jsonplaceholder.typicode.com/posts: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2024-05-20 08:57:01,363 - app - ERROR - B³¹d przy agregowaniu danych postów: Nie uda³o siê pobraæ danych
+2024-05-20 09:11:40,272 - app - ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\studia\testowanie\app.py", line 165, in home
+    return render_template('home.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "D:\studia\testowanie\templates\home.html", line 19, in top-level template code
+    <li><a href="{{ url_for('getPosts') }}">POSTY</a></li>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1084, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1073, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\werkzeug\routing\map.py", line 926, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'getPosts'. Did you mean 'photos' instead?
+2024-05-20 09:13:23,199 - app - ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\studia\testowanie\app.py", line 165, in home
+    return render_template('home.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "D:\studia\testowanie\templates\home.html", line 19, in top-level template code
+    <li><a href="{{ url_for('getPosts') }}">POSTY</a></li>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1084, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1073, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\werkzeug\routing\map.py", line 926, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'getPosts'. Did you mean 'photos' instead?
