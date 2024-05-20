@@ -1,0 +1,104 @@
+2024-05-20 08:56:59,175 - app - ERROR - B³¹d przy pobieraniu danych z https://jsonplaceholder.typicode.com/posts: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2024-05-20 08:57:01,363 - app - ERROR - B³¹d przy agregowaniu danych postów: Nie uda³o siê pobraæ danych
+2024-05-20 09:11:40,272 - app - ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\studia\testowanie\app.py", line 165, in home
+    return render_template('home.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "D:\studia\testowanie\templates\home.html", line 19, in top-level template code
+    <li><a href="{{ url_for('getPosts') }}">POSTY</a></li>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1084, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1073, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\werkzeug\routing\map.py", line 926, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'getPosts'. Did you mean 'photos' instead?
+2024-05-20 09:13:23,199 - app - ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\studia\testowanie\app.py", line 165, in home
+    return render_template('home.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "D:\studia\testowanie\templates\home.html", line 19, in top-level template code
+    <li><a href="{{ url_for('getPosts') }}">POSTY</a></li>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1084, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1073, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\aleks\AppData\Local\Programs\Python\Python312\Lib\site-packages\werkzeug\routing\map.py", line 926, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'getPosts'. Did you mean 'photos' instead?
+2024-05-20 10:08:38,852 - app - ERROR - B³¹d przy ³adowaniu albumów: Could not build url for endpoint 'index'. Did you mean 'home' instead?
+2024-05-20 10:09:59,501 - app - ERROR - B³¹d przy ³adowaniu albumów: Could not build url for endpoint 'getAlbumsWithLimit' with values ['limit']. Did you mean 'albums' instead?
+2024-05-20 10:11:20,428 - app - ERROR - B³¹d przy ³adowaniu albumów: Could not build url for endpoint 'getAlbumsWithLimit' with values ['limit']. Did you mean 'albums' instead?
+2024-05-20 10:20:22,665 - app - ERROR - B³¹d przy pobieraniu danych z https://jsonplaceholder.typicode.com/users: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2024-05-20 10:20:23,562 - app - ERROR - B³¹d przy agregowaniu danych postów: Nie uda³o siê pobraæ danych
+2024-05-20 10:20:58,603 - app - ERROR - B³¹d przy ³adowaniu albumów: Could not build url for endpoint 'getAlbumsWithLimit' with values ['limit']. Did you mean 'albums' instead?
+2024-05-20 10:26:14,419 - app - ERROR - B³¹d przy ³adowaniu zdjêæ: Could not build url for endpoint 'index'. Did you mean 'home' instead?
+2024-05-20 10:27:26,838 - app - ERROR - B³¹d przy ³adowaniu albumów: Could not build url for endpoint 'getAlbumsWithLimit' with values ['limit']. Did you mean 'albums' instead?
+2024-05-20 10:27:33,411 - app - ERROR - B³¹d przy ³adowaniu zdjêæ: Could not build url for endpoint 'index'. Did you mean 'home' instead?
+2024-05-20 10:27:51,178 - app - ERROR - B³¹d przy pobieraniu danych z https://jsonplaceholder.typicode.com/users: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2024-05-20 10:27:52,132 - app - ERROR - B³¹d przy agregowaniu danych postów: Nie uda³o siê pobraæ danych
+2024-05-20 10:29:51,176 - app - ERROR - B³¹d przy ³adowaniu zdjêæ: Could not build url for endpoint 'index'. Did you mean 'home' instead?
+2024-05-20 11:00:22,499 - app - ERROR - B³¹d przy agregowaniu danych postów: Could not build url for endpoint 'getPosts'. Did you mean 'photos' instead?
+2024-05-20 11:01:01,197 - app - ERROR - B³¹d przy agregowaniu danych postów: Could not build url for endpoint 'getPosts'. Did you mean 'photos' instead?
+2024-05-20 11:05:44,314 - app - ERROR - B³¹d przy agregowaniu danych postów: Could not build url for endpoint 'getPosts'. Did you mean 'photos' instead?
+2024-05-20 11:06:03,842 - app - ERROR - B³¹d przy ³adowaniu zdjêæ: Could not build url for endpoint 'getPosts'. Did you mean 'photos' instead?
+2024-05-20 11:07:17,073 - app - ERROR - B³¹d przy agregowaniu danych postów: Could not build url for endpoint 'getPosts'. Did you mean 'photos' instead?
+2024-05-20 11:07:46,162 - app - ERROR - B³¹d przy ³adowaniu zdjêæ: Could not build url for endpoint 'getPosts'. Did you mean 'photos' instead?
+2024-05-20 11:08:41,992 - app - ERROR - B³¹d przy agregowaniu danych postów: Could not build url for endpoint 'getPosts'. Did you mean 'photos' instead?
+2024-05-20 11:11:09,872 - app - ERROR - B³¹d przy ³adowaniu albumów: Could not build url for endpoint 'getPosts'. Did you mean 'photos' instead?
+2024-05-20 11:17:32,724 - app - ERROR - B³¹d przy ³adowaniu albumów: Could not build url for endpoint '' with values ['limit']. Did you mean 'static' instead?
+2024-05-20 11:33:57,916 - app - ERROR - B³¹d przy ³adowaniu albumów: Could not build url for endpoint '' with values ['limit']. Did you mean 'static' instead?
+2024-05-20 11:34:05,742 - app - ERROR - B³¹d przy ³adowaniu zdjêæ: Could not build url for endpoint 'getPhotosWithLimit' with values ['albumId', 'albumTitle', 'limit']. Did you mean 'photos' instead?
+2024-05-20 11:34:07,312 - app - ERROR - B³¹d przy ³adowaniu zdjêæ: Could not build url for endpoint 'getPhotosWithLimit' with values ['albumId', 'albumTitle', 'limit']. Did you mean 'photos' instead?

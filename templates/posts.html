@@ -8,33 +8,49 @@
 </head>
 
 <body>
-    <h1>Posty</h1>
-    <a href="posts" class="navigation">posty</a>
-    <a href="photos" class="navigation">zdjecia</a>
-    <a href="albums" class="navigation"> albumy</a>
-    <form action="/posts" method="get">
-        <label for="min_length">Minimalna liczba znaków:</label>
-        <input type="number" id="min_length" name="min_length" value="{{ request.args.get('min_length', '') }}" min="0">
-        
-        <label for="max_length">Maksymalna liczba znaków:</label>
-        <input type="number" id="max_length" name="max_length" value="{{ request.args.get('max_length', '') }}" min="0">
-        
-        <button type="submit">Filtruj</button>
-    </form>
-    <div id="posts-container">
-        {% for post in posts %}
-            <div class="post">
-                <h2>{{ post.name }} ({{ post.username }})</h2>
-                <p>{{ post.post_body }}</p>
-                <h3>Komentarze:</h3>
+    <div class="container">
+        <div class="nav">
+            <div class="name">
+                <h1>POSTY</h1>
+            </div>
+            <div class="navigation">
                 <ul>
-                    {% for comment in post.comments %}
-                        <h4><strong>E-mail:</strong> {{ comment.email }}</h4>
-                        <li>{{ comment.name }}: {{ comment.body }}</li>
-                    {% endfor %}
+                    <li><a href="{{ url_for('home') }}">HOME</a></li>
+                    <li><a href="{{ url_for('aggregate_data') }}">POSTY</a></li>
+                    <li><a href="{{ url_for('albums') }}">ALBUMY</a></li>
+                    <li><a href="{{ url_for('photos') }}">ZDJĘCIA</a></li>
                 </ul>
             </div>
-        {% endfor %}
+        </div>
+
+        <div class="limit">
+            <form class="posts-form" method="GET" action="{{ url_for('aggregate_data') }}">
+                <label for="limit">Limit wyświetlanych postów: </label>
+                <input type="number" id="limit" name="limit" min="1" max="100" value="{{ request.args.get('limit', '') }}" required>
+                <label for="min_length">Minimalna liczba znaków:</label>
+                <input type="number" id="min_length" name="min_length" min="0" value="{{ request.args.get('min_length', '') }}" required>
+                <label for="max_length">Maksymalna liczba znaków:</label>
+                <input type="number" id="max_length" name="max_length" min="0" value="{{ request.args.get('max_length', '') }}" required>
+                <button>Zastosuj</button>
+            </form>
+        </div>
+
+        <div class="content">
+            {% for post in posts %}
+                <div class="post">
+                    <h2>Post - {{ post.username }} - {{ post.name }}</h2>
+                    <p>{{ post.post_body }}</p>
+                    <h3>Komentarze:</h3>
+                    <ul>
+                        {% for comment in post.comments %}
+                            <li>
+                                <strong>{{ comment.name }}</strong> ({{ comment.email }}): <br>{{ comment.body }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>
